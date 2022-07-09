@@ -47,6 +47,5 @@ jobs:
       run: |
         helm package chart/wordpress --version=${{ steps.tag_version.outputs.new_tag }} --app-version=${{ steps.tag_version.outputs.new_tag }}
     - name: Publish Helm Chart
-      uses: stefanprodan/helm-gh-pages@master
-      with:
-        token: ${{ secrets.B_TOKEN }}
+      run: |
+        curl -H "X-JFrog-Art-Api:${{ secrets.X_JFROG_ART_API }}" -T $(find . -name 'wordpress*.tgz') "https://alexeifiz.jfrog.io/artifactory/alexeifiz/$(find . -name 'wordpress*.tgz')"
