@@ -48,5 +48,5 @@ jobs:
         helm package chart/wordpress --version=${{ steps.tag_version.outputs.new_tag }} --app-version=${{ steps.tag_version.outputs.new_tag }}
     - name: Publish Helm Chart
       uses: stefanprodan/helm-gh-pages@master
-        with:
-          token: ${{ secrets.B_TOKEN }}
+      with:
+        token: ${{ secrets.B_TOKEN }}
